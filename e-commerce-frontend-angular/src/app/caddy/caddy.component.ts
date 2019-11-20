@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {CatalogueService} from '../services/catalogue.service';
 import {Product} from '../model/product.model';
 import {Router} from '@angular/router';
@@ -16,14 +16,14 @@ export class CaddyComponent implements OnInit {
 
   public caddy: Caddy;
 
-  constructor(private catService: CatalogueService, private router: Router,
-              public caddyService: CaddyService, private authService: AuthenticationService) { }
+  constructor(private catService: CatalogueService,private router: Router,
+    public caddyService: CaddyService,private authService: AuthenticationService) {}
 
   ngOnInit() {
-    if (!this.authService.isAuthenticated()) {
+    if(!this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
-    this.caddy = this.caddyService.getCaddy();
+    this.caddy=this.caddyService.getCaddy();
     console.log(this.caddy);
   }
 
@@ -34,7 +34,7 @@ export class CaddyComponent implements OnInit {
   }
 
   getTotal() {
-      return this.caddyService.getTotalCurrentCaddy();
+    return this.caddyService.getTotalCurrentCaddy();
   }
 
   onNewOrder() {
@@ -43,13 +43,13 @@ export class CaddyComponent implements OnInit {
 
   onAddCaddy() {
 
-    const size = this.caddyService.listCaddies.length;
-    const index: number = this.caddyService.listCaddies[size - 1].num;
-    this.caddyService.addNewCaddy({num: index + 1, name: 'Caddy' + (index + 1)});
+    const size=this.caddyService.listCaddies.length;
+    const index: number=this.caddyService.listCaddies[size-1].num;
+    this.caddyService.addNewCaddy({num: index+1,name: 'Caddy'+(index+1)});
   }
 
-  onSelectCaddy(c: { num: number; name: string }) {
-    this.caddyService.currentCaddyName = c.name;
-    this.caddy = this.caddyService.getCaddy();
+  onSelectCaddy(c: {num: number; name: string}) {
+    this.caddyService.currentCaddyName=c.name;
+    this.caddy=this.caddyService.getCaddy();
   }
 }
